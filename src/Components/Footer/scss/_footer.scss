@@ -1,0 +1,9 @@
+@import '../../../scss/variables.scss';
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100vw;
+	height: 100px;
+	background: $bg-color-footer;
+}
