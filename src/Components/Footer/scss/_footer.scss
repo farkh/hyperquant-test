@@ -25,46 +25,50 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 36px;
-			height: 36px;
+			width: 32px;
+			height: 32px;
 			border-radius: 50%;
 			color: $color-font-badge;
 			background-color: $bg-color-badge;
 			position: absolute;
-			top: -10px;
-			right: calc(50% - 45px);
+			top: -7px;
+			right: calc(50% - 35px);
 			cursor: default;
 		}
 
 		&::before {
 			content: '';
 			display: block;
-			width: 44px;
-			height: 44px;
+			width: 36px;
+			height: 36px;
 			margin-bottom: 12px;
-
-			mask-size: cover;
 			background-color: $bg-color-footer-icon;
 		}
 
 		&--dashboard::before {
 			mask: url('../../../img/dashboard-icon.svg') no-repeat;
+			mask-size: cover;
 		}
 
 		&--megabot::before {
 			mask: url('../../../img/megabot-icon.svg') no-repeat;
+			mask-size: cover;
 		}
 
 		&--market::before {
+			width: 39px;
 			mask: url('../../../img/market-icon.svg') no-repeat;
+			mask-size: cover;
 		}
 
 		&--prices::before {
 			mask: url('../../../img/prices-icon.svg') no-repeat;
+			mask-size: cover;
 		}
 
 		&--profile::before {
 			mask: url('../../../img/profile-icon.svg') no-repeat;
+			mask-size: cover;
 		}
 
 		&--active {
