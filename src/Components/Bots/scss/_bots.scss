@@ -1,0 +1,54 @@
+@import '../../../scss/variables.scss';
+
+.bots {
+	display: flex;
+	flex-direction: column;
+	padding: 30px;
+
+	&__row {
+		display: flex;
+	}
+
+	&__row + &__row {
+		margin-top: 2px;
+	}
+
+	.bot {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background-color: #252d40;
+		border-radius: 6px;
+		height: 220px;
+
+		&__icon {
+			width: 40%;
+		}
+
+		&__title {
+			margin: 10px 0 0 0;
+			text-transform: uppercase;
+			font-weight: 700;
+			color: $color-font-light;
+		}
+
+		&__change {
+			margin: 4px 0 0 0;
+			font-weight: 700;
+
+			&--negative {
+				color: $color-font-negative;
+			}
+
+			&--positive {
+				color: $color-font-positive;
+			}
+		}
+	}
+
+	&__bot + &__bot {
+		margin-left: 2px;
+	}
+}
