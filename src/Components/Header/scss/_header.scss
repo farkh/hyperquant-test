@@ -1,0 +1,40 @@
+@import '../../../scss/variables.scss';
+
+.header {
+	width: 100vw;
+	padding: 30px 15px;
+	text-align: center;
+	position: relative;
+	box-sizing: border-box;
+
+	&__title {
+		font-weight: 700;
+		font-size: 1.2em;
+	}
+
+	&__refresh-icon,
+	&__menu-icon {
+		background-color: $bg-color-header-icon;
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		position: absolute;
+		top: calc(50% - 20px);
+
+		&:hover {
+			background-color: $bg-color-header-icon-active;
+		}
+	}
+
+	&__menu-icon {
+		mask: url('../../../img/menu-icon.svg') no-repeat;
+		mask-size: cover;
+		left: 40px;
+	}
+
+	&__refresh-icon {
+		mask: url('../../../img/refresh-icon.svg') no-repeat;
+		mask-size: cover;
+		right: 40px;
+	}
+}
