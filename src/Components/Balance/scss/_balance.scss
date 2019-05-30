@@ -1,0 +1,68 @@
+@import '../../../scss/variables.scss';
+
+.balance {
+	display: flex;
+	align-items: center;
+
+	&__capital {
+		position: relative;
+
+		&-label {
+			margin: 0;
+			font-size: 1em;
+			text-transform: uppercase;
+			font-weight: 700;
+			position: absolute;
+			top: -15px;
+		}
+
+		&-value {
+			margin: 0;
+			color: $color-font-light;
+			font-size: 2.5em;
+		}
+	}
+
+	&__info {
+		margin-left: auto;
+
+		&-row {
+			display: flex;
+			position: relative;
+			padding-right: 28px;
+			text-align: right;
+			margin: 7px 0;
+
+			&-icon::after {
+				content: '';
+				display: block;
+				width: 20px;
+				height: 20px;
+				mask: url('../../../img/balance.png') no-repeat;
+				mask-size: cover;
+				background-color: $bg-color-balance-icon;
+				position: absolute;
+				right: 0;
+				top: calc(50% - 10px);
+			}
+		}
+
+		&-label {
+			margin: 0;
+			font-size: 1em;
+			text-transform: uppercase;
+			font-weight: 700;
+			min-width: 100px;
+			margin-right: 5px;
+			flex: 3;
+		}
+
+		&-value {
+			margin: 0;
+			color: $color-font-light;
+			font-weight: 700;
+			min-width: 65px;
+			flex: 2;
+		}
+	}
+}

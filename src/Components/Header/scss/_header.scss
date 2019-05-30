@@ -2,14 +2,15 @@
 
 .header {
 	width: 100vw;
-	padding: 30px 15px;
+	padding: 30px;
 	text-align: center;
 	position: relative;
 	box-sizing: border-box;
 
 	&__title {
 		font-weight: 700;
-		font-size: 1.2em;
+		font-size: 1.4em;
+		margin: 0;
 	}
 
 	&__refresh-icon,
@@ -29,12 +30,12 @@
 	&__menu-icon {
 		mask: url('../../../img/menu-icon.svg') no-repeat;
 		mask-size: cover;
-		left: 40px;
+		left: 30px;
 	}
 
 	&__refresh-icon {
 		mask: url('../../../img/refresh-icon.svg') no-repeat;
 		mask-size: cover;
-		right: 40px;
+		right: 30px;
 	}
 }
