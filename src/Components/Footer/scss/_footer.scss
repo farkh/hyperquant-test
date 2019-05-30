@@ -1,0 +1,78 @@
+@import '../../../scss/variables.scss';
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100vw;
+	height: 100px;
+	background: $bg-color-footer;
+
+	display: flex;
+	justify-content: space-around;
+
+	&__item {
+		flex: 1;
+		position: relative;
+		color: $color-font-grey;
+		cursor: pointer;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		&-badge {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 36px;
+			height: 36px;
+			border-radius: 50%;
+			color: $color-font-badge;
+			background-color: $bg-color-badge;
+			position: absolute;
+			top: -10px;
+			right: calc(50% - 45px);
+			cursor: default;
+		}
+
+		&::before {
+			content: '';
+			display: block;
+			width: 44px;
+			height: 44px;
+			margin-bottom: 12px;
+
+			mask-size: cover;
+			background-color: $bg-color-footer-icon;
+		}
+
+		&--dashboard::before {
+			mask: url('../../../img/dashboard-icon.svg') no-repeat;
+		}
+
+		&--megabot::before {
+			mask: url('../../../img/megabot-icon.svg') no-repeat;
+		}
+
+		&--market::before {
+			mask: url('../../../img/market-icon.svg') no-repeat;
+		}
+
+		&--prices::before {
+			mask: url('../../../img/prices-icon.svg') no-repeat;
+		}
+
+		&--profile::before {
+			mask: url('../../../img/profile-icon.svg') no-repeat;
+		}
+
+		&--active {
+			color: $color-font-light;
+
+			&::before {
+				background-color: $bg-color-footer-icon-active;
+			}
+		}
+	}
+}
