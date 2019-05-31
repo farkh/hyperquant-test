@@ -1,0 +1,25 @@
+.loading-overlay {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, .75);
+	color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	&__spinner {
+		width: 40px;
+		height: 40px;
+		background: url('../../../img/spinner.svg') no-repeat;
+		background-size: cover;
+	}
+
+	&__text {
+		font-size: 0.9em;
+	}
+}

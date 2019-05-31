@@ -24,6 +24,10 @@
 			font-size: 1.8rem;
 			white-space: nowrap;
 		}
+
+		&-currency {
+			text-transform: uppercase;
+		}
 	}
 
 	&__info {
