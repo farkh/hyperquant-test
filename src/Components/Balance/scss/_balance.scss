@@ -3,7 +3,7 @@
 .balance {
 	display: flex;
 	align-items: center;
-	padding: 10px 15px 5px;
+	padding: 12px 10px 0;
 
 	&__capital {
 		position: relative;
@@ -21,7 +21,7 @@
 		&-value {
 			margin: 0;
 			color: $color-font-light;
-			font-size: 2rem;
+			font-size: 1.8rem;
 			white-space: nowrap;
 		}
 	}
@@ -35,7 +35,6 @@
 			position: relative;
 			padding-right: 20px;
 			text-align: right;
-			margin: 2px 0;
 
 			&-icon::after {
 				content: '';
