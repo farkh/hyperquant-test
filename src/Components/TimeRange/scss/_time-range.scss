@@ -1,0 +1,41 @@
+@import '../../../scss/variables.scss';
+
+.time-range {
+	display: flex;
+	padding: 0 15px 15px;
+	align-items: center;
+
+	&__label {
+		margin: 0;
+		font-size: .75rem;
+		font-weight: 700;
+	}
+
+	&__ranges {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		margin-left: auto;
+	}
+
+	&__range {
+		font-size: .75rem;
+		padding: 5px;
+		// TODO:
+		border: 1px solid #273246;
+		border-radius: 15px;
+		cursor: pointer;
+		
+		&--active {
+			font-weight: 700;
+			color: $color-font-light;
+			// TODO:
+			background: #232c3e;
+			border: 1px solid #8e939b;
+		}
+	}
+
+	&__range + &__range {
+		margin-left: 10px;
+	}
+}
