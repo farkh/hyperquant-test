@@ -2,25 +2,25 @@
 
 .header {
 	width: 100vw;
-	padding: 15px;
+	padding: 10px;
 	text-align: center;
 	position: relative;
 	box-sizing: border-box;
 
 	&__title {
 		font-weight: 700;
-		font-size: 1rem;
+		font-size: 0.9rem;
 		margin: 0;
 	}
 
 	&__refresh-icon,
 	&__menu-icon {
 		background-color: $bg-color-header-icon;
-		width: 20px;
-		height: 20px;
+		width: 16px;
+		height: 16px;
 		cursor: pointer;
 		position: absolute;
-		top: calc(50% - 10px);
+		top: calc(50% - 8px);
 
 		&:hover {
 			background-color: $bg-color-header-icon-active;
@@ -30,12 +30,12 @@
 	&__menu-icon {
 		mask: url('../../../img/menu-icon.svg') no-repeat;
 		mask-size: cover;
-		left: 15px;
+		left: 10px;
 	}
 
 	&__refresh-icon {
 		mask: url('../../../img/refresh-icon.svg') no-repeat;
 		mask-size: cover;
-		right: 15px;
+		right: 10px;
 	}
 }

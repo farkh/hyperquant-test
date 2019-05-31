@@ -2,7 +2,7 @@
 
 .time-range {
 	display: flex;
-	padding: 0 15px 15px;
+	padding: 0 10px;
 	align-items: center;
 
 	&__label {
@@ -21,17 +21,15 @@
 	&__range {
 		font-size: .75rem;
 		padding: 5px;
-		// TODO:
-		border: 1px solid #273246;
+		border: 1px solid $border-color-range;
 		border-radius: 15px;
 		cursor: pointer;
 		
 		&--active {
 			font-weight: 700;
 			color: $color-font-light;
-			// TODO:
-			background: #232c3e;
-			border: 1px solid #8e939b;
+			background: $bg-color-range-active;
+			border: 1px solid $border-color-range-active;
 		}
 	}
 
