@@ -1,16 +1,16 @@
 .dashboard {
-	height: calc(100vh - 187px);
+	height: calc(100vh - 100px);
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 
-	&__balance {
-		flex: 1 0 12.5%;
-	}
+	// &__balance {
+	// 	flex: 1 0 12.5%;
+	// }
 
-	&__graph,
-	&__bots {
-		flex: 1 0 37.5%;
-	}
+	// &__graph,
+	// &__bots {
+	// 	flex: 1 0 37.5%;
+	// }
 }
