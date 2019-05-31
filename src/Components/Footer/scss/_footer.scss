@@ -3,8 +3,8 @@
 .footer {
 	position: fixed;
 	bottom: 0;
-	width: 100vw;
-	height: 100px;
+	width: 100%;
+	height: 50px;
 	background: $bg-color-footer;
 
 	display: flex;
@@ -15,6 +15,7 @@
 		position: relative;
 		color: $color-font-grey;
 		cursor: pointer;
+		font-size: 12px;
 
 		display: flex;
 		flex-direction: column;
@@ -25,23 +26,23 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 32px;
-			height: 32px;
+			width: 20px;
+			height: 20px;
 			border-radius: 50%;
 			color: $color-font-badge;
 			background-color: $bg-color-badge;
 			position: absolute;
-			top: -7px;
-			right: calc(50% - 35px);
+			top: -5px;
+			right: calc(50% - 24px);
 			cursor: default;
 		}
 
 		&::before {
 			content: '';
 			display: block;
-			width: 36px;
-			height: 36px;
-			margin-bottom: 12px;
+			width: 20px;
+			height: 20px;
+			margin-bottom: 5px;
 			background-color: $bg-color-footer-icon;
 		}
 
@@ -56,7 +57,7 @@
 		}
 
 		&--market::before {
-			width: 39px;
+			width: 21px;
 			mask: url('../../../img/market-icon.svg') no-repeat;
 			mask-size: cover;
 		}

@@ -1,27 +1,37 @@
 @import '../../../scss/variables.scss';
 
 .bots {
+	padding: 15px;
 	display: flex;
-	flex-direction: column;
-	padding: 30px;
-
-	&__row {
-		display: flex;
-	}
-
-	&__row + &__row {
-		margin-top: 2px;
-	}
+	justify-content: space-between;
+	flex-wrap: wrap;
 
 	.bot {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 		background-color: #252d40;
 		border-radius: 6px;
-		height: 220px;
+		width: 32%;
+		margin-bottom: 2%;
+		position: relative;
+
+		&:not(:nth-child(3n)) {
+			margin-right: 2%;
+		}
+
+		&::before {
+			content: '';
+			float: left;
+			padding-top: 100%;
+		}
+
+		&__content {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
 
 		&__icon {
 			width: 40%;
@@ -32,11 +42,13 @@
 			text-transform: uppercase;
 			font-weight: 700;
 			color: $color-font-light;
+			font-size: 0.7rem;
 		}
 
 		&__change {
-			margin: 4px 0 0 0;
+			margin: 0;
 			font-weight: 700;
+			font-size: 0.65rem;
 
 			&--negative {
 				color: $color-font-negative;
@@ -46,9 +58,5 @@
 				color: $color-font-positive;
 			}
 		}
-	}
-
-	&__bot + &__bot {
-		margin-left: 2px;
 	}
 }
