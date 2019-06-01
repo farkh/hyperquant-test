@@ -6,8 +6,10 @@ import _ from 'lodash';
 import BotItem from './BotItem';
 import AddBotModal from '../AddBotModal/AddBotModal';
 import BotActionsModal from '../BotActionsModal/BotActionsModal';
+import ConnectionArrows from '../ConnectionArrows/ConnectionArrows';
 
 import { addBot, removeBot } from '../../Redux/actions/botsActions';
+import { getNeighborsIndexes } from '../../utils/bot.utils';
 import './scss/_bots.scss';
 
 class Bots extends Component {
@@ -21,6 +23,44 @@ class Bots extends Component {
 
 		showAddBotModal: false,
 		showBotActionsModal: false,
+		visibleArrowsIndexes: [],
+		usedBots: [],
+	};
+
+	componentDidMount() {
+		const { botsReducerState } = this.props;
+		const { usedBots } = botsReducerState;
+		this.setState({ usedBots }, this.checkMegabotNeighbors);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { botsReducerState } = nextProps;
+		const { usedBots } = botsReducerState;
+		this.setState({ usedBots }, this.checkMegabotNeighbors);
+	}
+
+	checkMegabotNeighbors = () => {
+		const { usedBots } = this.state;
+		const { botsReducerState } = this.props;
+		const { megabotIndex } = botsReducerState;
+
+		// 0 = false -> check for null specifically
+		if (megabotIndex === null) {
+			this.setState({ visibleArrowsIndexes: [] });
+			return;
+		}
+
+		const neighborsIndexes = getNeighborsIndexes(megabotIndex);
+		const { arrowIndexes, botIndexes } = neighborsIndexes;
+		const visibleArrowsIndexes = [];
+
+		for (let i = 0; i < botIndexes.length; i++) {
+			if (!_.isEmpty(usedBots[botIndexes[i]])) {
+				visibleArrowsIndexes.push(arrowIndexes[i]);
+			}
+		}
+
+		this.setState({ visibleArrowsIndexes });
 	};
 
 	handleClickBotItem = (index, name = null) => {
@@ -54,9 +94,11 @@ class Bots extends Component {
 	
 	render() {
 		const { botsReducerState } = this.props;
-		const { showAddBotModal, clickedIndex, showBotActionsModal } = this.state;
-		const { usedBots, activeBotIndex } = botsReducerState;
-		
+		const {
+			showAddBotModal, clickedIndex, showBotActionsModal, visibleArrowsIndexes, usedBots,
+		} = this.state;
+		const { activeBotIndex } = botsReducerState;
+
 		return (
 			<div className="dashboard__bots bots">
 				{usedBots && usedBots.length > 0 && usedBots.map((bot, index) => {
@@ -90,6 +132,8 @@ class Bots extends Component {
 					index={clickedIndex}
 					isActive={clickedIndex === activeBotIndex}
 				/>
+
+				<ConnectionArrows visibleArrowsIndexes={visibleArrowsIndexes} />
 			</div>
 		);
 	}
