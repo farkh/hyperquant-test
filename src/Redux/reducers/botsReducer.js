@@ -5,12 +5,14 @@ const initialState = {
 		{}, {}, {}, {}, {}, {},
 	],
 	activeBotIndex: -1,
+	megabotIndex: null,
 };
 
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_BOT:
 			const { bot, index } = action.payload;
+			const megabotIndex = action.payload.bot.name === 'yellow_bot' ? index : state.megabotIndex;
 
 			return {
 				...state,
@@ -19,9 +21,11 @@ export default (state = initialState, action) => {
 					bot,
 					...state.usedBots.slice(index + 1),
 				],
+				megabotIndex,
 			};
 		case REMOVE_BOT:
 			const activeBotIndex = state.activeBotIndex === action.payload.index ? -1 : state.activeBotIndex;
+			const megaBotIndex = action.payload.index === state.megabotIndex ? null : state.megabotIndex;
 			
 			return {
 				...state,
@@ -31,6 +35,7 @@ export default (state = initialState, action) => {
 					...state.usedBots.slice(action.payload.index + 1),
 				],
 				activeBotIndex,
+				megabotIndex: megaBotIndex,
 			};
 		case ACTIVATE_BOT:
 			return {
