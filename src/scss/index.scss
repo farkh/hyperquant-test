@@ -29,4 +29,9 @@ code {
     background-color: $color-font-positive;
     color: $color-font-light;
   }
+
+  &--danger{
+    background-color: $color-font-negative;
+    color: $color-font-light;
+  }
 }

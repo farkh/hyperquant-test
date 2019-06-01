@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import BotItem from './BotItem';
 import AddBotModal from '../AddBotModal/AddBotModal';
+import BotActionsModal from '../BotActionsModal/BotActionsModal';
 
 import { addBot, removeBot } from '../../Redux/actions/botsActions';
 import './scss/_bots.scss';
@@ -16,9 +17,10 @@ class Bots extends Component {
 	};
 
 	state = {
-		selectedBotName: '',
-		showAddBotModal: false,
 		clickedIndex: null,
+
+		showAddBotModal: false,
+		showBotActionsModal: false,
 	};
 
 	handleClickBotItem = (index, name = null) => {
@@ -29,10 +31,20 @@ class Bots extends Component {
 			return;
 		}
 		
-		this.setState({ selectedBotName: name });
+		this.handleShowBotActionsModal();
 	};
 
+	handleShowBotActionsModal = () => {
+		this.handleCloseAddBotModal();
+		this.setState({ showBotActionsModal: true });
+	};
+
+	handleCloseBotActionsModal = () => {
+		this.setState({ showBotActionsModal: false });
+	};
+	
 	handleShowAddBotModal = () => {
+		this.handleCloseBotActionsModal();
 		this.setState({ showAddBotModal: true });
 	};
 
@@ -42,8 +54,8 @@ class Bots extends Component {
 	
 	render() {
 		const { botsReducerState } = this.props;
-		const { selectedBotName, showAddBotModal, clickedIndex } = this.state;
-		const { usedBots } = botsReducerState;
+		const { showAddBotModal, clickedIndex, showBotActionsModal } = this.state;
+		const { usedBots, activeBotIndex } = botsReducerState;
 		
 		return (
 			<div className="dashboard__bots bots">
@@ -53,7 +65,7 @@ class Bots extends Component {
 							key={index}
 							index={index}
 							uses={!_.isEmpty(bot)}
-							isActive={selectedBotName === bot.name}
+							isActive={activeBotIndex === index}
 							day={bot["24h"]}
 							week={bot["7d"]}
 							month={bot["30d"]}
@@ -70,6 +82,13 @@ class Bots extends Component {
 					show={showAddBotModal}
 					onClose={this.handleCloseAddBotModal}
 					index={clickedIndex}
+				/>
+
+				<BotActionsModal
+					show={showBotActionsModal}
+					onClose={this.handleCloseBotActionsModal}
+					index={clickedIndex}
+					isActive={clickedIndex === activeBotIndex}
 				/>
 			</div>
 		);

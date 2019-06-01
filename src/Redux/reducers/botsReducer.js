@@ -1,9 +1,10 @@
-import { ADD_BOT, REMOVE_BOT } from '../types/botsTypes';
+import { ADD_BOT, REMOVE_BOT, ACTIVATE_BOT } from '../types/botsTypes';
 
 const initialState = {
 	usedBots: [
 		{}, {}, {}, {}, {}, {},
 	],
+	activeBotIndex: -1,
 };
 
 export default (state = initialState, action) => {
@@ -20,6 +21,8 @@ export default (state = initialState, action) => {
 				],
 			};
 		case REMOVE_BOT:
+			const activeBotIndex = state.activeBotIndex === action.payload.index ? -1 : state.activeBotIndex;
+			
 			return {
 				...state,
 				usedBots: [
@@ -27,6 +30,12 @@ export default (state = initialState, action) => {
 					{},
 					...state.usedBots.slice(action.payload.index + 1),
 				],
+				activeBotIndex,
+			};
+		case ACTIVATE_BOT:
+			return {
+				...state,
+				activeBotIndex: action.payload.index,
 			};
 		default:
 			return state;
