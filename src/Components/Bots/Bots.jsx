@@ -1,33 +1,58 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import BotItem from './BotItem';
+import AddBotModal from '../AddBotModal/AddBotModal';
 
+import { addBot, removeBot } from '../../Redux/actions/botsActions';
 import './scss/_bots.scss';
 
 class Bots extends Component {
 	static propTypes = {
-		bots: PropTypes.arrayOf(PropTypes.object),
+		addBot: PropTypes.func.isRequired,
+		removeBot: PropTypes.func.isRequired,
 	};
 
 	state = {
 		selectedBotName: '',
+		showAddBotModal: false,
+		clickedIndex: null,
 	};
 
-	handleClickBotItem = (name) => {
+	handleClickBotItem = (index, name = null) => {
+		this.setState({ clickedIndex: index });
+
+		if (!name) {
+			this.handleShowAddBotModal();
+			return;
+		}
+		
 		this.setState({ selectedBotName: name });
+	};
+
+	handleShowAddBotModal = () => {
+		this.setState({ showAddBotModal: true });
+	};
+
+	handleCloseAddBotModal = () => {
+		this.setState({ showAddBotModal: false });
 	};
 	
 	render() {
-		const { bots, selectedBotName } = this.props;
+		const { botsReducerState } = this.props;
+		const { selectedBotName, showAddBotModal, clickedIndex } = this.state;
+		const { usedBots } = botsReducerState;
 		
 		return (
 			<div className="dashboard__bots bots">
-				{bots && bots.length > 0 && bots.map((bot) => {
+				{usedBots && usedBots.length > 0 && usedBots.map((bot, index) => {
 					return (
 						<BotItem
-							key={bot.name}
-							uses={false}
+							key={index}
+							index={index}
+							uses={!_.isEmpty(bot)}
 							isActive={selectedBotName === bot.name}
 							day={bot["24h"]}
 							week={bot["7d"]}
@@ -40,9 +65,19 @@ class Bots extends Component {
 						/>
 					);
 				})}
+
+				<AddBotModal
+					show={showAddBotModal}
+					onClose={this.handleCloseAddBotModal}
+					index={clickedIndex}
+				/>
 			</div>
 		);
 	}
 }
 
-export default Bots;
+const mapStateToProps = state => ({
+	botsReducerState: state.usedBots,
+});
+
+export default connect(mapStateToProps, { addBot, removeBot })(Bots);

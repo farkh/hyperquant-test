@@ -1,0 +1,13 @@
+@import '../../../scss/variables.scss';
+
+.add-bot {
+	&__item {
+		padding: 10px 0;
+		cursor: pointer;
+		box-sizing: border-box;
+	}
+
+	&__item + &__item {
+		border-top: 1px solid $border-color-range;
+	}
+}

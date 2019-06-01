@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import RangeItem from './RangeItem';
 
+import { setTimeRange } from '../../Redux/actions/timeRangeActions';
 import './scss/_time-range.scss';
 
 const RANGES = [
@@ -18,18 +21,38 @@ const RANGES = [
 		text: '30 days',
 	},
 	{
+		value: 90,
+		text: '90 days',
+	},
+	{
 		value: 0,
 		text: 'All time',
 	},
 ];
 
 class TimeRange extends Component {
+	static propTypes = {
+		setTimeRange: PropTypes.func.isRequired,
+	};
+	
 	state = {
 		selectedValue: 0,
 	};
 
+	componentDidMount() {
+		const { timeRangeReducerState } = this.props;
+		const { timeRange } = timeRangeReducerState;
+		this.setState({ selectedValue: timeRange });
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { timeRangeReducerState } = nextProps;
+		const { timeRange } = timeRangeReducerState;
+		this.setState({ selectedValue: timeRange });
+	}
+
 	handleRangeItemClick = (value) => {
-		this.setState({ selectedValue: value });
+		this.props.setTimeRange({ value });
 	};
 	
 	render() {
@@ -54,4 +77,8 @@ class TimeRange extends Component {
 	}
 }
 
-export default TimeRange;
+const mapStateToProps = state => ({
+	timeRangeReducerState: state.timeRange,
+});
+
+export default connect(mapStateToProps, { setTimeRange })(TimeRange);

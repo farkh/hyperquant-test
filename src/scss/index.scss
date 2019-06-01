@@ -1,8 +1,4 @@
-// html {
-//   max-width: 100vw;
-//   max-height: 100vh;
-//   overflow: hidden;
-// }
+@import './variables.scss';
 
 body {
   margin: 0;
@@ -16,4 +12,21 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.btn {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &--default {
+    background-color: $bg-color-footer-icon;
+    color: $color-font-light;
+  }
+
+  &--primary {
+    background-color: $color-font-positive;
+    color: $color-font-light;
+  }
 }
