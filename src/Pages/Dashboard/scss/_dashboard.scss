@@ -4,4 +4,20 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+
+	&__balance {
+		height: 5%;
+	}
+
+	&__graph {
+		height: 30%;
+	}
+
+	&__bots {
+		max-height: 45%;
+	}
+
+	&__time-range {
+		height: 7%;
+	}
 }
