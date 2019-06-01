@@ -2,13 +2,14 @@
 
 .time-range {
 	display: flex;
-	padding: 0 10px;
+	padding: 0 10px 10px;
 	align-items: center;
 
 	&__label {
 		margin: 0;
 		font-size: .75rem;
 		font-weight: 700;
+		white-space: nowrap;
 	}
 
 	&__ranges {
@@ -20,6 +21,7 @@
 
 	&__range {
 		font-size: .75rem;
+		white-space: nowrap;
 		padding: 5px;
 		border: 1px solid $border-color-range;
 		border-radius: 15px;
@@ -34,6 +36,6 @@
 	}
 
 	&__range + &__range {
-		margin-left: 10px;
+		margin-left: 5px;
 	}
 }
