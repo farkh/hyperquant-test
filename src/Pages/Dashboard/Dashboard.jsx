@@ -15,7 +15,6 @@ class Dashboard extends Component {
 	state = {
 		isLoading: true,
 		balance: 0,
-		bots: [],
 		tradingCapital: 0,
 		tradingCurrency: '',
 		onHold: 0,
@@ -24,7 +23,6 @@ class Dashboard extends Component {
 	componentDidMount() {
 		const {
 			balance,
-			bots,
 			on_hold: onHold,
 			trading_capital: tradingCapital,
 			trading_capital_currency: tradingCurrency,
@@ -32,26 +30,22 @@ class Dashboard extends Component {
 
 		this.setState({
 			balance,
-			bots,
 			onHold,
 			tradingCapital,
 			tradingCurrency,
 			isLoading: false,
 		});
-
-		console.log('data', data);
 	}
 	
 	render() {
 		const {
 			isLoading,
 			balance,
-			bots,
 			onHold,
 			tradingCapital,
 			tradingCurrency,
 		} = this.state;
-		
+
 		return (
 			<div className="dashboard">
 				<LoadingOverlay show={isLoading} text="Loading..." />
@@ -65,7 +59,7 @@ class Dashboard extends Component {
 
 				<Graph />
 
-				<Bots bots={bots} />
+				<Bots />
 				
 				<TimeRange />
 			</div>
