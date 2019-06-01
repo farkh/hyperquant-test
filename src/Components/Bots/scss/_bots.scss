@@ -7,7 +7,7 @@
 	flex-wrap: wrap;
 
 	.bot {
-		background-color: #252d40;
+		background-color: $bg-color-bot;
 		border-radius: 6px;
 		width: 32.66%;
 		margin-bottom: 1%;
@@ -104,6 +104,11 @@
 		
 		&--white .bot__icon::after {
 			background: url('../../../img/white-bot.png') no-repeat;
+			background-size: cover;
+		}
+
+		&--active {
+			background: url('../../../img/bg-active-bot.png') no-repeat;
 			background-size: cover;
 		}
 	}

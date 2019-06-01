@@ -7,27 +7,20 @@ class ModalWrapper extends Component {
 	static propTypes = {
 		show: PropTypes.bool,
 		title: PropTypes.string,
-		onClose: PropTypes.func.isRequired,
-		onSuccess: PropTypes.func,
-		closeText: PropTypes.string,
-		successText: PropTypes.string,
-		showSuccessBtn: PropTypes.bool,
 		additionalClassName: PropTypes.string,
+		renderBottomBlock: PropTypes.func,
 	};
 
 	static defaultProps = {
 		show: false,
 		title: 'Modal',
-		onSuccess: () => {},
-		closeText: 'Cancel',
-		successText: 'Ok',
-		showSuccessBtn: true,
 		additionalClassName: null,
+		renderBottomBlock: () => {},
 	};
 	
 	render() {
 		const {
-			show, onClose, title, onSuccess, closeText, successText, showSuccessBtn, additionalClassName,
+			show, title, additionalClassName, renderBottomBlock,
 		} = this.props;
 		
 		if (!show) return null;
@@ -42,21 +35,7 @@ class ModalWrapper extends Component {
 					<article className="modal-wrapper__content">{this.props.children}</article>
 					
 					<footer className="modal-wrapper__footer">
-						<button
-							className="btn btn--default"
-							onClick={onClose}
-						>
-							{closeText}
-						</button>
-
-						{showSuccessBtn && (
-							<button
-								className="btn btn--primary"
-								onClick={onSuccess}
-							>
-								{successText}
-							</button>
-						)}
+						{renderBottomBlock()}
 					</footer>
 				</div>
 			</div>

@@ -46,10 +46,13 @@ class AddBotModal extends Component {
 		return (
 			<ModalWrapper
 				show={show}
-				onClose={onClose}
 				title="Add bot"
-				showSuccessBtn={false}
 				additionalClassName="add-bot"
+				renderBottomBlock={() => (
+					<button className="btn btn--default" onClick={onClose}>
+						Close
+					</button>
+				)}
 			>
 				{bots && bots.map(bot => (
 					<BotListItem

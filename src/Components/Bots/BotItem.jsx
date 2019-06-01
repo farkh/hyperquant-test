@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { getBotActionByName } from '../../utils/bot.utils';
+
 class BotItem extends Component {
 	static propTypes = {
 		uses: PropTypes.bool,
@@ -13,6 +15,7 @@ class BotItem extends Component {
 		allTime: PropTypes.number,
 		name: PropTypes.string,
 		onClick: PropTypes.func.isRequired,
+		isActive: PropTypes.bool,
 	};
 
 	static defaultProps = {
@@ -23,6 +26,7 @@ class BotItem extends Component {
 		threeMonths: null,
 		allTime: null,
 		name: null,
+		isActive: false,
 	};
 
 	state = {
@@ -41,7 +45,7 @@ class BotItem extends Component {
 		this.setState({ timeRange });
 	}
 
-	getDataByTimeRange = () => {
+	getChangeByTimeRange = () => {
 		const { day, week, month, threeMonths, allTime } = this.props;
 		const { timeRange } = this.state;
 
@@ -60,6 +64,13 @@ class BotItem extends Component {
 				return allTime;
 		}
 	};
+
+	getBotActionByName = () => {
+		let { name } = this.props;
+		name = name.split('_')[0];
+
+		return getBotActionByName(name);
+	};
 	
 	render() {
 		const {
@@ -67,8 +78,9 @@ class BotItem extends Component {
 			index,
 			name,
 			onClick,
+			isActive,
 		} = this.props;
-		const change = this.getDataByTimeRange();
+		const change = this.getChangeByTimeRange();
 
 		if (!uses) {
 			return (
@@ -82,10 +94,13 @@ class BotItem extends Component {
 		}
 
 		return (
-			<div className={`bots__bot bot bot--${name.split('_')[0]}`} onClick={() => onClick(index, name)}>
+			<div
+				className={`bots__bot bot bot--${name.split('_')[0]} ${isActive ? 'bot--active' : ''}`}
+				onClick={() => onClick(index, name)}
+			>
 				<div className="bot__content">
 					<div className="bot__icon" />
-					<p className="bot__title">Attack</p>
+					<p className="bot__title">{this.getBotActionByName()}</p>
 					<p
 						className={`bot__change ${change > 0 ? 'bot__change--positive' : 'bot__change--negative'}`}
 					>
